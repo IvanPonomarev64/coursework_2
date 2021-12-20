@@ -37,7 +37,7 @@ def search_candidates(id, token: str, sex: int, status: int, age_from: int, age_
     except KeyError:
         return False 
     except requests.exceptions.ConnectionError:
-        return "inet"
+        print( f"Соединение было прервано.")
     else:
         if res != []:
             id_list = []
@@ -68,6 +68,8 @@ def get_photo_and_home_url(id, token) -> list:
         res = res["response"]
     except KeyError:
         pass
+    except requests.exceptions.ConnectionError:
+        print( f"Соединение было прервано.")
     else:
         res = res["items"]
         photo_list = []
